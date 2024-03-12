@@ -1,0 +1,13 @@
+No momento de cadastrar um novo cliente:
+- verificar de qual cliente (ponto 2) sua localização é mais próxima;
+    - dado este cliente mais próximo, descobrir se é seu antecessor (ponto 1) ou seu sucessor (ponto 3) na rota que é mais próximo do novo cliente;
+    - se não tiver antecessor, considerar o ponto 0,0 como antecessor;
+    - se não tiver sucessor, considerar o ponto 0,0 como sucessor;
+    - se for seu antecessor, inserir novo cliente entre ponto 1 e ponto 2;
+        - novo cliente herdará a posição na rota do cliente referenciado pelo ponto 2 e este cliente do ponto 2 e todos os seguintes na fila da rota terão incremento em sua posição;
+    - se for seu sucessor, inserir novo cliente entre ponto 2 e ponto 3;
+        - novo cliente herdará a posição na rota do cliente referenciado pelo ponto 3 e este cliente do ponto 3 e todos os seguintes na fila da rota terão incremento em sua posição;
+    - se antecessor e sucessor tiverem a mesma distância para o novo cliente, inserir entre ponto 1 e ponto 2 (poderia ser entre ponto 2 e ponto 3);
+        - novo cliente herdará a posição na rota do cliente referenciado pelo ponto 2 e este cliente do ponto 2 e todos os seguintes na fila da rota terão incremento em sua posição;
+- se for o primeiro cliente a ser cadastrado inserir na posição 1;
+- se for o segundo cliente a ser cadastrado inserir na posição 2;
