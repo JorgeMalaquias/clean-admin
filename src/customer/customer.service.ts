@@ -34,4 +34,11 @@ export class CustomerService {
     }
     return customers;
   }
+  async getCustomerByPhone(phone:number): Promise<Customer[]>{
+    const customers = await this.customerRepository.getCustomersByPhone(phone);
+    if(customers.length===0){
+      throw new HttpException('A user with the given phone was not found',HttpStatus.NOT_FOUND);
+    }
+    return customers;
+  }
 }

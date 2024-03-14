@@ -28,4 +28,10 @@ export class CustomerRepository {
     ) as QueryResult<Customer>;
     return result.rows;
   }
+  async getCustomersByPhone(phone:number): Promise<Customer[]> {
+    const result =  await connection.query(
+      'SELECT * FROM customers WHERE phone = $1',[phone]
+    ) as QueryResult<Customer>;
+    return result.rows;
+  }
 }
