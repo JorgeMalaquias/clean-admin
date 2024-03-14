@@ -12,7 +12,7 @@ export class CustomerController {
   }
 
   @Post()
-  async createCustomer(@Body() data: CustomerDTO): Promise<any> {
-    return await this.customerService.createCustomer(data);
+  async createCustomer(@Body() data: CustomerDTO): Promise<void> {
+    await this.customerService.createCustomer(data);
   }
 }

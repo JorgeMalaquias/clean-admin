@@ -1,6 +1,4 @@
-import { QueryResult } from 'pg';
 import connection from '../database/postgres-config';
-import { Customer } from '../database/types';
 import { CustomerDTO } from './types/types';
 
 export class CustomerRepository {

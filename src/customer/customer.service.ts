@@ -9,8 +9,7 @@ export class CustomerService {
   getHello(): string {
     return 'Hello World!';
   }
-  async createCustomer(data: CustomerDTO): Promise<any> {
-    const newCustomer = await this.customerRepository.createCustomer(data);
-    return newCustomer;
+  async createCustomer(data: CustomerDTO): Promise<void> {
+    await this.customerRepository.createCustomer(data);
   }
 }
