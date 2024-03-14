@@ -12,7 +12,7 @@ export class CustomerController {
     return await this.customerService.getCustomers();
   }
   @Get('/byEmail/:email')
-  async getCustomerByEmail(@Param('email') email:string): Promise<Customer> {
+  async getCustomerByEmail(@Param('email') email:string): Promise<Customer[]> {
     return await this.customerService.getCustomerByEmail(email);
   }
   @Post()

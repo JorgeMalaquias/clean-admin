@@ -11,8 +11,8 @@ export class CustomerService {
     return 'Hello World!';
   }
   async createCustomer(data: CustomerDTO): Promise<void> {
-    const userPreviouslyRegistered = await this.customerRepository.getCustomerByEmail(data.email);
-    if(userPreviouslyRegistered){
+    const userPreviouslyRegistered = await this.customerRepository.getCustomersByEmail(data.email);
+    if(userPreviouslyRegistered[0]){
       throw new HttpException('A user with the given email is already registered',HttpStatus.CONFLICT);
     }
     await this.customerRepository.createCustomer(data);
@@ -20,11 +20,11 @@ export class CustomerService {
   async getCustomers():Promise<Customer[]>{
     return await this.customerRepository.getCustomers();
   }
-  async getCustomerByEmail(email:string): Promise<Customer>{
-    const customer = await this.customerRepository.getCustomerByEmail(email);
-    if(!customer){
+  async getCustomerByEmail(email:string): Promise<Customer[]>{
+    const customers = await this.customerRepository.getCustomersByEmail(email);
+    if(customers.length===0){
       throw new HttpException('A user with the given email was not found',HttpStatus.NOT_FOUND);
     }
-    return customer;
+    return customers;
   }
 }

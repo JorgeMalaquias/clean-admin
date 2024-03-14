@@ -10,15 +10,21 @@ export class CustomerRepository {
       [data.name, data.email, data.phone],
     );
   }
-  async getCustomerByEmail(email:string): Promise<Customer> {
+  async getCustomersByEmail(email:string): Promise<Customer[]> {
     const result =  await connection.query(
       'SELECT * FROM customers WHERE email = $1',[email]
     ) as QueryResult<Customer>;
-    return result.rows[0];
+    return result.rows;
   }
   async getCustomers(): Promise<Customer[]> {
     const result =  await connection.query(
       'SELECT * FROM customers'
+    ) as QueryResult<Customer>;
+    return result.rows;
+  }
+  async getCustomersByName(name:string): Promise<Customer[]> {
+    const result =  await connection.query(
+      'SELECT * FROM customers WHERE name = $1',[name]
     ) as QueryResult<Customer>;
     return result.rows;
   }
