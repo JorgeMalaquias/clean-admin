@@ -20,4 +20,11 @@ export class CustomerService {
   async getCustomers():Promise<Customer[]>{
     return await this.customerRepository.getCustomers();
   }
+  async getCustomerByEmail(email:string): Promise<Customer>{
+    const customer = await this.customerRepository.getCustomerByEmail(email);
+    if(!customer){
+      throw new HttpException('A user with the given email was not found',HttpStatus.NOT_FOUND);
+    }
+    return customer;
+  }
 }
