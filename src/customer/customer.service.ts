@@ -1,4 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { Customer } from 'src/database/types';
 import { CustomerRepository } from './customer.repository';
 import { CustomerDTO } from './types/types';
 
@@ -15,5 +16,8 @@ export class CustomerService {
       throw new HttpException('A user with the given email is already registered',HttpStatus.CONFLICT);
     }
     await this.customerRepository.createCustomer(data);
+  }
+  async getCustomers():Promise<Customer[]>{
+    return await this.customerRepository.getCustomers();
   }
 }

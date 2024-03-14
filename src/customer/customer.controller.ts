@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Customer } from 'src/database/types';
 import {  CustomerService } from './customer.service';
 import { CustomerDTO } from './types/types';
 
@@ -7,8 +8,8 @@ export class CustomerController {
   constructor(private readonly customerService: CustomerService) {}
 
   @Get()
-  getHello(): string {
-    return this.customerService.getHello();
+  async getCustomers():Promise<Customer[]> {
+    return await this.customerService.getCustomers();
   }
 
   @Post()

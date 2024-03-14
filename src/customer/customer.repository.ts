@@ -16,4 +16,10 @@ export class CustomerRepository {
     ) as QueryResult<Customer>;
     return result.rows[0];
   }
+  async getCustomers(): Promise<Customer[]> {
+    const result =  await connection.query(
+      'SELECT * FROM customers'
+    ) as QueryResult<Customer>;
+    return result.rows;
+  }
 }
