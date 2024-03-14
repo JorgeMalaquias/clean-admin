@@ -15,6 +15,10 @@ export class CustomerController {
   async getCustomerByEmail(@Param('email') email:string): Promise<Customer[]> {
     return await this.customerService.getCustomerByEmail(email);
   }
+  @Get('/byName/:name')
+  async getCustomerByName(@Param('name') name:string): Promise<Customer[]> {
+    return await this.customerService.getCustomerByName(name);
+  }
   @Post()
   async createCustomer(@Body() data: CustomerDTO): Promise<void> {
     await this.customerService.createCustomer(data);

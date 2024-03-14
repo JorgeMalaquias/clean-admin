@@ -27,4 +27,11 @@ export class CustomerService {
     }
     return customers;
   }
+  async getCustomerByName(name:string): Promise<Customer[]>{
+    const customers = await this.customerRepository.getCustomersByName(name);
+    if(customers.length===0){
+      throw new HttpException('A user with the given name was not found',HttpStatus.NOT_FOUND);
+    }
+    return customers;
+  }
 }
