@@ -1,6 +1,4 @@
-import pg from 'pg';
-
-const { Pool } = pg;
+import { Pool }  from 'pg';
 
 const user = process.env.USER;
 const password = process.env.PASSWORD;
@@ -17,4 +15,4 @@ const connection = new Pool({
   database
 });
 
-export default connection.query;
+export default connection;
