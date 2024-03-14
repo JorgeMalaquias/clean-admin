@@ -1,7 +1,7 @@
 import { QueryResult } from 'pg';
-import { CustomerDTO } from './customer.service';
-import connection from './database/postgres-config';
-import { Customer } from './database/types';
+import connection from '../database/postgres-config';
+import { Customer } from '../database/types';
+import { CustomerDTO } from './types/types';
 
 export class CustomerRepository {
   async createCustomer(data: CustomerDTO): Promise<any> {

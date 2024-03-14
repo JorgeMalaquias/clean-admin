@@ -1,19 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { Customer } from './database/types';
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { CustomerRepository } from './customer.repository';
+import { CustomerDTO } from './types/types';
 
-export class CustomerDTO {
-  @IsNotEmpty()
-  @IsString()
-  name: string;
-  @IsNotEmpty()
-  @IsString()
-  email: string;
-  @IsNotEmpty()
-  @IsNumber()
-  phone: number;
-}
 
 @Injectable()
 export class CustomerService {
