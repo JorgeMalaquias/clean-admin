@@ -6,13 +6,13 @@ import { CustomerRepository } from './customer.repository';
 export class CustomerDTO {
   @IsNotEmpty()
   @IsString()
-  name:string;
+  name: string;
   @IsNotEmpty()
   @IsString()
-  email:string;
+  email: string;
   @IsNotEmpty()
   @IsNumber()
-  phone:number
+  phone: number;
 }
 
 @Injectable()
@@ -21,7 +21,7 @@ export class CustomerService {
   getHello(): string {
     return 'Hello World!';
   }
-  async createCustomer(data:CustomerDTO):Promise<any>{
+  async createCustomer(data: CustomerDTO): Promise<any> {
     const newCustomer = await this.customerRepository.createCustomer(data);
     return newCustomer;
   }

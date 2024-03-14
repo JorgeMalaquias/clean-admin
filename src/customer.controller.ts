@@ -11,8 +11,7 @@ export class CustomerController {
   }
 
   @Post()
-  async createCustomer(@Body() data:CustomerDTO):Promise<any>{
-    console.log(process.env.PASSWORD);
+  async createCustomer(@Body() data: CustomerDTO): Promise<any> {
     return await this.customerService.createCustomer(data);
   }
 }
