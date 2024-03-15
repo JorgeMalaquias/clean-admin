@@ -1,13 +1,17 @@
 import { QueryResult } from 'pg';
 import { Customer } from 'src/database/types';
 import connection from '../database/postgres-config';
-import { CustomerDTO } from './types/types';
-
-export class CustomerRepository {
-  async createCustomer(data: CustomerDTO): Promise<void> {
+type localizationWithPosition = {
+  x: number;
+  y: number;
+  routePosition: number;
+  customerId: number;
+};
+export class LocalizationRepository {
+  async createLocalization(data: localizationWithPosition): Promise<void> {
     await connection.query(
-      'INSERT INTO customers (name,email,phone) VALUES ($1, $2, $3)',
-      [data.name, data.email, data.phone],
+      'INSERT INTO localizations (x,y,routePosition,customerId) VALUES ($1, $2, $3)',
+      [data.x, data.y, data.routePosition, data.customerId],
     );
   }
   async getCustomers(): Promise<Customer[]> {
@@ -16,7 +20,7 @@ export class CustomerRepository {
     )) as QueryResult<Customer>;
     return result.rows;
   }
-  async getCustomersByEmail(email: string): Promise<Customer[]> {
+  async getLocalizationByCustomerId(email: string): Promise<Customer[]> {
     const result = (await connection.query(
       'SELECT * FROM customers WHERE email = $1',
       [email],

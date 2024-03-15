@@ -1,15 +1,15 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { Customer } from 'src/database/types';
-import { CustomerService } from './customer.service';
 import {
   CustomerDTO,
   GetCustomerByEmailDTO,
   GetCustomerByPhoneDTO,
-} from './types/types';
+} from '../customer/types/types';
+import { LocalizationService } from './localization.service';
 
-@Controller('/customers')
-export class CustomerController {
-  constructor(private readonly customerService: CustomerService) {}
+@Controller('/localizations')
+export class LocalizationController {
+  constructor(private readonly customerService: LocalizationService) {}
 
   @Get()
   async getCustomers(): Promise<Customer[]> {

@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { CustomerModule } from './customer/customer.module';
+import { LocalizationModule } from './localization/localization.module';
 
 @Module({
   imports: [
@@ -8,6 +9,7 @@ import { CustomerModule } from './customer/customer.module';
       isGlobal: true,
     }),
     CustomerModule,
+    LocalizationModule,
   ],
 })
 export class AppModule {}

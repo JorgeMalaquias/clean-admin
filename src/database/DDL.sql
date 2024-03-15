@@ -6,3 +6,11 @@ CREATE TABLE customers (
     "email" varchar(30) NOT NULL UNIQUE,
     "phone" bigint NOT NULL
 );
+
+CREATE TABLE localizations (
+    "id" serial PRIMARY KEY,
+    "x" bigint NOT NULL,
+    "y" bigint NOT NULL,
+    "routePosition" integer NOT NULL,
+    "customerId" integer REFERENCES customers(id)
+);

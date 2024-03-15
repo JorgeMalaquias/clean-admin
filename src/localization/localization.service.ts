@@ -1,11 +1,11 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Customer } from 'src/database/types';
-import { CustomerRepository } from './customer.repository';
-import { CustomerDTO } from './types/types';
+import { CustomerDTO } from '../customer/types/types';
+import { LocalizationRepository } from './localization.repository';
 
 @Injectable()
-export class CustomerService {
-  constructor(private readonly customerRepository: CustomerRepository) {}
+export class LocalizationService {
+  constructor(private readonly customerRepository: LocalizationRepository) {}
   getHello(): string {
     return 'Hello World!';
   }
