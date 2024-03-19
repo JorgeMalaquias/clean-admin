@@ -9,19 +9,27 @@ export type LocalizationModel = {
 export class LocalizationRepository {
   async createLocalization(data: LocalizationModel): Promise<void> {
     await connection.query(
-      'INSERT INTO localizations (x,y,routePosition,customerId) VALUES ($1, $2, $3)',
+      'INSERT INTO localizations (x,y,"routePosition","customerId") VALUES ($1, $2, $3, $4)',
       [data.x, data.y, data.routePosition, data.customerId],
     );
   }
   async getAllLocalizations(): Promise<LocalizationModel[]> {
     const result: QueryResult<LocalizationModel> = await connection.query(
-      'ISELECT * FROM localizations',
+      'SELECT * FROM localizations',
+    );
+    return result.rows;
+  }
+  async getLocalizationsOrderedByThePositionORoute(): Promise<
+    LocalizationModel[]
+  > {
+    const result: QueryResult<LocalizationModel> = await connection.query(
+      'SELECT c.name,l."routePosition" FROM localizations AS l JOIN customers AS c ON l."customerId"=c.id ORDER BY "routePosition"',
     );
     return result.rows;
   }
   async updateLocalization(offset: number): Promise<void> {
     await connection.query(
-      'UPDATE localizations SET routePosition = routePosition+1 WHERE routePosition >= $1',
+      'UPDATE localizations SET "routePosition" = "routePosition"+1 WHERE "routePosition" >= $1',
       [offset],
     );
   }

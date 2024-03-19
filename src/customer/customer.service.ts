@@ -22,7 +22,7 @@ export class CustomerService {
     }
     const newCustomerId: number = await (
       await this.customerRepository.createCustomer(data)
-    ).rows[0];
+    ).rows[0].id;
     await this.localizationService.createLocalization(
       data.localization,
       newCustomerId,
