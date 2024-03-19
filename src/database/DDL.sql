@@ -11,6 +11,6 @@ CREATE TABLE localizations (
     "id" serial PRIMARY KEY,
     "x" bigint NOT NULL,
     "y" bigint NOT NULL,
-    "routePosition" integer NOT NULL,
-    "customerId" integer REFERENCES customers(id)
+    "routePosition" integer NOT NULL UNIQUE,
+    "customerId" integer REFERENCES customers(id) NOT NULL UNIQUE
 );

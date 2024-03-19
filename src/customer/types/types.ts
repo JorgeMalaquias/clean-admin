@@ -12,7 +12,7 @@ export class CustomerDTO {
   phone: number;
   localization: LocalizationDTO;
 }
-class LocalizationDTO {
+export class LocalizationDTO {
   @IsNotEmpty()
   @IsNumberString()
   x: number;

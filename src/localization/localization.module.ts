@@ -7,5 +7,6 @@ import { LocalizationService } from './localization.service';
   imports: [],
   controllers: [LocalizationController],
   providers: [LocalizationService, LocalizationRepository],
+  exports: [LocalizationService],
 })
 export class LocalizationModule {}

@@ -1,14 +1,16 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Customer } from 'src/database/types';
+import { LocalizationService } from 'src/localization/localization.service';
 import { CustomerRepository } from './customer.repository';
 import { CustomerDTO } from './types/types';
 
 @Injectable()
 export class CustomerService {
-  constructor(private readonly customerRepository: CustomerRepository) {}
-  getHello(): string {
-    return 'Hello World!';
-  }
+  constructor(
+    private readonly customerRepository: CustomerRepository,
+    private readonly localizationService: LocalizationService,
+  ) {}
+
   async createCustomer(data: CustomerDTO): Promise<void> {
     const userPreviouslyRegistered =
       await this.customerRepository.getCustomersByEmail(data.email);
@@ -18,7 +20,13 @@ export class CustomerService {
         HttpStatus.CONFLICT,
       );
     }
-    await this.customerRepository.createCustomer(data);
+    const newCustomerId: number = await (
+      await this.customerRepository.createCustomer(data)
+    ).rows[0];
+    await this.localizationService.createLocalization(
+      data.localization,
+      newCustomerId,
+    );
   }
   async getCustomers(): Promise<Customer[]> {
     return await this.customerRepository.getCustomers();
