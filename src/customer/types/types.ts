@@ -4,6 +4,7 @@ import {
   IsEmail,
   IsNotEmpty,
   IsNotEmptyObject,
+  IsNumber,
   IsNumberString,
   IsObject,
   IsString,
@@ -11,10 +12,12 @@ import {
 } from 'class-validator';
 export class LocalizationDTO {
   @IsNotEmpty()
-  @IsNumberString()
+  @IsNumber()
+  @Type(() => Number)
   x: number;
   @IsNotEmpty()
-  @IsNumberString()
+  @IsNumber()
+  @Type(() => Number)
   y: number;
 }
 export class CustomerDTO {
@@ -25,7 +28,8 @@ export class CustomerDTO {
   @IsEmail()
   email: string;
   @IsNotEmpty()
-  @IsNumberString()
+  @IsNumber()
+  @Type(() => Number)
   phone: number;
   @IsDefined()
   @IsNotEmptyObject()

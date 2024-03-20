@@ -23,7 +23,7 @@ export class LocalizationRepository {
     LocalizationModel[]
   > {
     const result: QueryResult<LocalizationModel> = await connection.query(
-      'SELECT c.name,l."routePosition" FROM localizations AS l JOIN customers AS c ON l."customerId"=c.id ORDER BY "routePosition"',
+      'SELECT c.id,c.name,c.email,l."routePosition" FROM localizations AS l JOIN customers AS c ON l."customerId"=c.id ORDER BY "routePosition"',
     );
     return result.rows;
   }
