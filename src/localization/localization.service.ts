@@ -61,7 +61,6 @@ function calculateRoute(
       }
     }
   }
-  console.log(partialPosition);
   return partialPosition;
 }
 

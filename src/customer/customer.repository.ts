@@ -12,27 +12,27 @@ export class CustomerRepository {
   }
   async getCustomers(): Promise<Customer[]> {
     const result = (await connection.query(
-      'SELECT * FROM customers',
+      'SELECT c.*,l.x,l.y FROM customers AS c JOIN localizations AS l ON c.id=l."customerId"',
     )) as QueryResult<Customer>;
     return result.rows;
   }
   async getCustomersByEmail(email: string): Promise<Customer[]> {
     const result = (await connection.query(
-      'SELECT * FROM customers WHERE email = $1',
+      'SELECT c.*,l.x,l.y FROM customers AS c JOIN localizations AS l ON c.id=l."customerId" WHERE c.email = $1',
       [email],
     )) as QueryResult<Customer>;
     return result.rows;
   }
   async getCustomersByName(name: string): Promise<Customer[]> {
     const result = (await connection.query(
-      'SELECT * FROM customers WHERE name = $1',
+      'SELECT c.*,l.x,l.y FROM customers AS c JOIN localizations AS l ON c.id=l."customerId" WHERE c.name = $1',
       [name],
     )) as QueryResult<Customer>;
     return result.rows;
   }
   async getCustomersByPhone(phone: number): Promise<Customer[]> {
     const result = (await connection.query(
-      'SELECT * FROM customers WHERE phone = $1',
+      'SELECT c.*,l.x,l.y FROM customers AS c JOIN localizations AS l ON c.id=l."customerId" WHERE c.phone = $1',
       [phone],
     )) as QueryResult<Customer>;
     return result.rows;
